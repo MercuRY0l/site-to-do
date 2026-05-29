@@ -1,13 +1,20 @@
 
 
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.templating import Jinja2Templates
 from ..database.repositories.user_repo import UserRepository
 from ..pydantic_models.reg_pydantic import RegistrationUser
 
 from ..hasher import hash_password
 
 reg_router = APIRouter()
+
+templates = Jinja2Templates("frontend/templates")
+
+@reg_router.get("/auth/register", status_code=200)
+async def get_registration_page(request : Request):
+    return templates.TemplateResponse(request=request, name="register.html", context={"request" : request})
 
 @reg_router.post("/auth/register", status_code=201)
 async def registration(data : RegistrationUser):
