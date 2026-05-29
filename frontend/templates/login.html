@@ -14,13 +14,15 @@ family=Inter:wght@400;500;600;700&display=swap"
     />
   </head>
   <body>
+    <div class="toast-container" id="toast-container"></div>
+
     <div class="auth-container">
       <div class="auth-card">
         <h1>Welcome back</h1>
         <p>Log in to continue managing your tasks</p>
-        <form>
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
+        <form id="login-form">
+          <input type="email" placeholder="Email" id="login-email" required />
+          <input type="password" placeholder="Password" id="login-password" required />
           <button type="submit">Login</button>
         </form>
         <span>
@@ -29,5 +31,9 @@ family=Inter:wght@400;500;600;700&display=swap"
         </span>
       </div>
     </div>
+
+
+    <script src="/static/js/main.js" defer type="module"></script>
+
   </body>
 </html>
