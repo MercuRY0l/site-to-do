@@ -1,7 +1,9 @@
+import { showToast } from "../modules/showToast.js";
+
 export function initRegister() {
   const form = document.querySelector("#register-form");
 
-  if(!form) return;
+  if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -9,10 +11,12 @@ export function initRegister() {
     const fullName = document.getElementById("register-name").value;
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
-    const repeat_password = document.getElementById("register-repeat-password").value;
+    const repeat_password = document.getElementById(
+      "register-repeat-password",
+    ).value;
 
-    if (password != repeat_password){
-      showToast("error", "Пароли не совпадают!")
+    if (password != repeat_password) {
+      showToast("error", "Пароли не совпадают!");
     }
 
     const res = await fetch("/auth/register", {
