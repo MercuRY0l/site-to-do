@@ -1,6 +1,8 @@
 
 
-from fastapi import APIRouter, HTTPException, Response, Depends
+from fastapi import APIRouter, HTTPException, Response, Depends, Request
+from fastapi.templating import Jinja2Templates
+
 from ..database.repositories.user_repo import UserRepository
 from ..pydantic_models.log_pydantic import LoginUser
 
@@ -13,7 +15,7 @@ from .deps import get_current_user
 
 login_router = APIRouter()
 
-        
+templates = Jinja2Templates("frontend/templates")
 
 @login_router.get("/auth/me", status_code=200)
 async def check_auth(current_user : dict = Depends(get_current_user)):
@@ -24,7 +26,10 @@ async def check_auth(current_user : dict = Depends(get_current_user)):
             "username": current_user.login
         }
     }
-    
+
+@login_router.get("/auth/login", status_code=200)
+async def get_login_page(request : Request):
+    return templates.TemplateResponse(request=request, name="login.html", context={"request" : request})
 
 @login_router.post("/auth/login", status_code=200)
 async def login(response: Response , data : LoginUser):

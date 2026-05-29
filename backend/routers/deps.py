@@ -2,10 +2,36 @@
 
 import jwt
 
-from fastapi import HTTPException, Cookie
+from fastapi import HTTPException, Cookie, Request
 
 from ..jwt import SECRET_KEY, ALGORITHM
 from ..database.repositories.user_repo import UserRepository
+
+
+async def get_current_user_optional(request : Request):
+    access_token = request.cookies.get("access_token")
+    
+    if not access_token:
+        return None
+    
+    payload = jwt.decode(access_token, SECRET_KEY, algorithms=[ALGORITHM])
+    
+    if (payload.get("type") != "access"):
+        return None
+    
+    user_id = payload.get("user_id")
+    
+    if not user_id:
+        return None
+    
+    repo = UserRepository()
+    
+    user = await repo.find_user_by_id(user_id=user_id)
+    
+    if not user:
+        return None
+    
+    return user
 
 async def get_current_user(access_token : str = Cookie(None)):
     
