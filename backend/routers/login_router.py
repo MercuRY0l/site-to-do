@@ -35,7 +35,7 @@ async def get_login_page(request : Request):
 async def login(response: Response , data : LoginUser):
     repo = UserRepository()
     
-    user = await repo.find_user_by_username(data.login)
+    user = await repo.find_user_by_email(data.email)
     
     if not user:
         raise HTTPException(status_code=409, detail={"error" : "Пользователь не найден!"})

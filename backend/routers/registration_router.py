@@ -20,7 +20,7 @@ async def get_registration_page(request : Request):
 async def registration(data : RegistrationUser):
     repo = UserRepository()
     
-    if await repo.find_user_by_username(data.login) is not None:
+    if await repo.find_user_by_email(data.email) is not None:
         raise HTTPException(status_code=409, detail={"error" : "Пользователь уже существует!"})
     
     if data.password != data.password_repeat:
@@ -28,8 +28,7 @@ async def registration(data : RegistrationUser):
     
     hashed_password = hash_password(password=data.password)
     
-    
-    await repo.create_user(login=data.login, email=data.email, password=hashed_password)
+    await repo.create_user(username=data.username, email=data.email, password=hashed_password)
     
     return {"message" : "Пользователь успешно создан!"}
 
