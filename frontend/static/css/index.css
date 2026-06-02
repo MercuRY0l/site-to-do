@@ -278,6 +278,7 @@ body {
   cursor: pointer;
 }
 .task-list {
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -311,18 +312,15 @@ body {
   font-size: 12px;
   font-weight: 600;
 }
-.work {
-  background: #e0f2fe;
-  color: #0369a1;
-}
-.personal {
-  background: #ede9fe;
-  color: #6d28d9;
-}
-.travel {
-  background: #dcfce7;
-  color: #15803d;
-}
+
+.p0 { background: #e5e7eb; color: #374151; }
+.p1 { background: #dcfce7; color: #15803d; }
+.p2 { background: #bbf7d0; color: #15803d; }
+.p3 { background: #fef3c7; color: #92400e; }
+.p4 { background: #fed7aa; color: #9a3412; }
+.p5 { background: #fecaca; color: #991b1b; }
+
+
 @media (max-width: 900px) {
   .sidebar {
     display: none;
