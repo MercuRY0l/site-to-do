@@ -14,6 +14,38 @@ task_router = APIRouter()
 templates = Jinja2Templates("frontend/templates")
 
 
+@task_router.get("/task/{task_id}")
+async def get_task(task_id : int, current_user = Depends(get_current_user)):
+    repo = TaskRepository()
+    task = await repo.get_by_id(task_id)
+    
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    
+    if task.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Forbidden") 
+    
+    return {
+        "id" : task.id,
+        "title" : task.title,
+        "description" : task.description,
+        "priority" : task.priority
+    }
+
+
+@task_router.get("/tasks")
+async def get_tasks(current_user = Depends(get_current_user)):
+    repo = TaskRepository()
+    tasks = await repo.get_all(user_id = current_user.id)
+    
+    return [{
+        "id" : task.id,
+        "title" : task.title,
+        "description" : task.description,
+        "priority" : task.priority
+    } for task in tasks]
+    
+
 @task_router.post("/task/create")
 async def create_task(task : TaskCreate, current_user = Depends(get_current_user)):
     repo = TaskRepository()
