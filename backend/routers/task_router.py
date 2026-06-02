@@ -49,7 +49,7 @@ async def get_tasks(current_user = Depends(get_current_user)):
 @task_router.post("/task/create")
 async def create_task(task : TaskCreate, current_user = Depends(get_current_user)):
     repo = TaskRepository()
-    return await repo.create(priority=task.priority, title=task.title, description=task.description, date=task.date)
+    return await repo.create(user_id=current_user.id, priority=task.priority, title=task.title, description=task.description, date=task.date)
     
 @task_router.delete("/task/delete/{task_id}")
 async def delete_task(task_id : int, current_user = Depends(get_current_user)):

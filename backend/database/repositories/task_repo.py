@@ -4,9 +4,9 @@ from ..models.task import Tasks
 from sqlalchemy import select, delete, update as sql_update
 
 class TaskRepository():
-    async def create(self, priority : str, title : str, description : str, date : datetime) -> Tasks:
+    async def create(self, user_id : int ,priority : str, title : str, description : str, date : datetime) -> Tasks:
         async with async_session() as session:
-            task = Tasks(priority=priority, title=title, description=description, date=date)
+            task = Tasks(user_id=user_id, priority=priority, title=title, description=description, date=date)
             session.add(task)
             await session.commit()
             await session.refresh(task)
