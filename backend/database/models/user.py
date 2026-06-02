@@ -11,11 +11,12 @@ class Users(Base):
     __tablename__ = "users"
     
     id : Mapped[int] = mapped_column(Integer, primary_key=True)
-    login : Mapped[str] = mapped_column(String(255), nullable=False , unique=True)
+    username : Mapped[str] = mapped_column(String(255), nullable=False , unique=True)
     email : Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     password : Mapped[str] = mapped_column(String(255) , nullable=False)
     created_at : Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())
 
+    profile : Mapped["UsersProfiles"] = relationship("UsersProfiles", back_populates="user", uselist=False)
 
 class UsersProfiles(Base):
     __tablename__ = "users_profiles"

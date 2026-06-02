@@ -14,6 +14,8 @@ family=Inter:wght@400;500;600;700&display=swap"
     />
   </head>
   <body>
+    <div class="toast-container" id="toast-container"></div>
+
     <div class="app-layout">
       <aside class="sidebar">
         <div>
@@ -25,11 +27,7 @@ family=Inter:wght@400;500;600;700&display=swap"
           </nav>
         </div>
         <div class="profile-card">
-          <div class="avatar">A</div>
-          <div>
-            <h4>Alex</h4>
-            <p>Product Designer</p>
-          </div>
+          <div class="avatar"><img src="/static/images/default-avatar-icon.png" alt="avatar"></div>
         </div>
       </aside>
       <main class="main-content">
@@ -38,15 +36,17 @@ family=Inter:wght@400;500;600;700&display=swap"
             <h1>Входящие</h1>
             <p>Фокус на том, что важно сегодня</p>
           </div>
-          
         </header>
         <div class="primary-btn-container">
           <button class="primary-btn">+ Добавить задачу</button>
         </div>
 
-        <section class="task-list"> </section>
+        <section class="task-list"></section>
       </main>
     </div>
+
+
+  <script src="../static/js/main.js" defer type="module"></script>
+  
   </body>
 </html>
-

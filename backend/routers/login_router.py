@@ -35,7 +35,7 @@ async def get_login_page(request : Request):
 async def login(response: Response , data : LoginUser):
     repo = UserRepository()
     
-    user = await repo.find_user_by_username(data.login)
+    user = await repo.find_user_by_email(data.email)
     
     if not user:
         raise HTTPException(status_code=409, detail={"error" : "Пользователь не найден!"})
@@ -43,8 +43,8 @@ async def login(response: Response , data : LoginUser):
     if (not verify_password(plain_password=data.password, hashed_password=user.password)):
         raise HTTPException(status_code=400, detail={"error" : "Неверный пароль!"})
     
-    access_token = create_token({"user_id" : user.id, "login" : user.login,  "email" : user.email, "type" : "access"}, timedelta(minutes=ACCESS_TOKEN_EXPIRES))
-    refresh_token = create_token({"user_id" : user.id, "login" : user.login,  "email" : user.email, "type" : "refresh"}, timedelta(days=REFRESH_TOKEN_EXPIRES))
+    access_token = create_token({"user_id" : user.id, "username" : user.username,  "email" : user.email, "type" : "access"}, timedelta(minutes=ACCESS_TOKEN_EXPIRES))
+    refresh_token = create_token({"user_id" : user.id, "username" : user.username,  "email" : user.email, "type" : "refresh"}, timedelta(days=REFRESH_TOKEN_EXPIRES))
 
     expire_refresh = datetime.now(timezone.utc) + timedelta(days=REFRESH_TOKEN_EXPIRES)
     expire_access = datetime.now(timezone.utc) + timedelta(minutes=ACCESS_TOKEN_EXPIRES)
