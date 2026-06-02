@@ -1,11 +1,9 @@
-
+from .base import Base
 from datetime import datetime
 from sqlalchemy import Integer, String, DateTime, Float, func, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped, relationship
 
-class Base(DeclarativeBase):
-    pass
-
+from ..models.task import Tasks
 
 class Users(Base):
     __tablename__ = "users"
@@ -18,6 +16,12 @@ class Users(Base):
 
     profile : Mapped["UsersProfiles"] = relationship("UsersProfiles", back_populates="user", uselist=False)
 
+    tasks: Mapped[list["Tasks"]] = relationship(
+        "Tasks",
+        back_populates="user",
+        cascade="all, delete-orphan"
+    )
+    
 class UsersProfiles(Base):
     __tablename__ = "users_profiles"
 
