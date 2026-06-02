@@ -24,7 +24,7 @@ async def delete_task(task_id : int, current_user = Depends(get_current_user)):
     repo = TaskRepository()
     await repo.delete(id=task_id)
 
-@task_router.patch("/task/edit")
+@task_router.patch("/task/edit/{task_id}")
 async def edit_task(task_id : int, current_user = Depends(get_current_user), **data):
     repo = TaskRepository()
     await repo.update(id=task_id, data=data)
