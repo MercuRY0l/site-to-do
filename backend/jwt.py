@@ -29,7 +29,7 @@ def update_token(refresh_token : str):
     try:
         payload = jwt.decode(refresh_token, SECRET_KEY, algorithms=[ALGORITHM])
         user_id = int(payload.get("user_id"))
-        user_login = str(payload.get("login"))
+        user_username = str(payload.get("username"))
         user_email = str(payload.get("email"))
     
     except jwt.ExpiredSignatureError:
@@ -37,7 +37,7 @@ def update_token(refresh_token : str):
     except jwt.PyJWKError:
         raise HTTPException(status_code=401, detail={"error" : "Неверный refresh токен!"})
     
-    access_token = create_token({"user_id" : user_id, "login" : user_login, "email" : user_email, "type" : "access"}, timedelta(minutes=ACCESS_TOKEN_EXPIRES))
+    access_token = create_token({"user_id" : user_id, "username" : user_username, "email" : user_email, "type" : "access"}, timedelta(minutes=ACCESS_TOKEN_EXPIRES))
     return access_token
 
 

@@ -23,7 +23,8 @@ async def check_auth(current_user : dict = Depends(get_current_user)):
         "message": "Авторизован",
         "user": {
             "id": current_user.id,
-            "username": current_user.login
+            "username": current_user.username,
+            "email" : current_user.email
         }
     }
 
