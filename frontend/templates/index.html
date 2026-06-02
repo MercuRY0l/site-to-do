@@ -16,6 +16,55 @@ family=Inter:wght@400;500;600;700&display=swap"
   <body>
     <div class="toast-container" id="toast-container"></div>
 
+    <div class="modal-overlay hidden" id="task-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Новая задача</h2>
+          <button class="modal-close" id="close-modal">&times;</button>
+        </div>
+
+        <form id="task-form">
+          <div class="form-group">
+            <label>Название</label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Введите название задачи"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Описание</label>
+            <textarea
+              name="description"
+              placeholder="Введите описание"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Дата</label>
+            <input type="datetime-local" name="date" required />
+          </div>
+
+          <div class="form-group">
+            <label>Приоритет</label>
+            <select name="priority">
+              <option value="p0">0 — Нет приоритета</option>
+              <option value="p1">1 — Очень низкий</option>
+              <option value="p2">2 — Низкий</option>
+              <option value="p3">3 — Средний</option>
+              <option value="p4">4 — Высокий</option>
+              <option value="p5">5 — Критический</option>
+            </select>
+          </div>
+
+          <button type="submit" class="save-task-btn">Создать задачу</button>
+        </form>
+      </div>
+    </div>
+
     <div class="app-layout">
       <aside class="sidebar">
         <div>
@@ -27,7 +76,9 @@ family=Inter:wght@400;500;600;700&display=swap"
           </nav>
         </div>
         <div class="profile-card">
-          <div class="avatar"><img src="/static/images/default-avatar-icon.png" alt="avatar"></div>
+          <div class="avatar">
+            <img src="/static/images/default-avatar-icon.png" alt="avatar" />
+          </div>
         </div>
       </aside>
       <main class="main-content">
@@ -45,8 +96,6 @@ family=Inter:wght@400;500;600;700&display=swap"
       </main>
     </div>
 
-
-  <script src="../static/js/main.js" defer type="module"></script>
-  
+    <script src="../static/js/main.js" defer type="module"></script>
   </body>
 </html>
