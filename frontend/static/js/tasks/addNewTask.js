@@ -1,6 +1,7 @@
 import { API_URL } from "../modules/config.js";
 import { apiFetch } from "../auth/apiFetch.js";
 import { showToast } from "../modules/showToast.js";
+import { loadTasks } from "./loadTasks.js";
 
 export function initAddNewTask() {
     const form = document.getElementById("task-form");
@@ -82,7 +83,7 @@ export function initAddNewTask() {
             modal.classList.remove("show");
 
             
-            // await loadTasks();
+            await loadTasks();
 
         } catch (error) {
             console.error(error);
