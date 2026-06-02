@@ -33,3 +33,9 @@ class TaskRepository():
             res = await session.execute(stmt)
             return res.scalar_one_or_none()
     
+    async def get_all(self, user_id : int) -> Tasks:
+        async with async_session() as session:
+            stmt = select(Tasks).where(Tasks.user_id == user_id)
+            res = await session.execute(stmt)
+            return res.scalars().all()
+            
