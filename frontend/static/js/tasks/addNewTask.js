@@ -55,9 +55,20 @@ export function initAddNewTask() {
             return;
         }
 
+        const isEdit =
+        form.dataset.mode === "edit";
+
+        const url = isEdit
+            ? `${API_URL}/task/edit/${form.dataset.taskId}`
+            : `${API_URL}/task/create`;
+
+        const method = isEdit
+            ? "PATCH"
+            : "POST";
+
         try {
-            const response = await apiFetch(`${API_URL}/task/create`, {
-                method: "POST",
+            const response = await apiFetch(url, {
+                method,
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -82,7 +93,9 @@ export function initAddNewTask() {
 
             modal.classList.remove("show");
 
-            
+            delete form.dataset.mode;
+            delete form.dataset.taskId;
+
             await loadTasks();
 
         } catch (error) {
