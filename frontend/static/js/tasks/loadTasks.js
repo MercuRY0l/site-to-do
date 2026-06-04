@@ -24,8 +24,16 @@ export async function loadTasks() {
         if (!data.length) {
             list.innerHTML = `
                 <div class="empty-state">
-                    <p>У вас пока нет задач</p>
+                <div class="empty-state-content">
+                    <div class="empty-state-icon">📝</div>
+
+                    <h3>Пока нет задач</h3>
+
+                    <p>
+                        Создайте свою первую задачу и начните организовывать день.
+                    </p>
                 </div>
+            </div>
             `;
             return;
         }
@@ -33,10 +41,11 @@ export async function loadTasks() {
         data.forEach(task => {
             const card = document.createElement("div");
             card.classList.add("task-card");
+            card.dataset.id = task.id;
 
             card.innerHTML = `
                 <label>
-                    <input type="checkbox" />
+                    <input type="checkbox" class="task-checkbox"/>
                     <span>${task.title}</span>
                 </label>
 
