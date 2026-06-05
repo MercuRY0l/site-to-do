@@ -13,6 +13,10 @@ task_router = APIRouter()
 
 templates = Jinja2Templates("frontend/templates")
 
+@task_router.get("/tasks/today")
+async def get_today_task_page(request : Request, current_user = Depends(get_current_user)):
+    return templates.TemplateResponse(request=request, name="/tasks/today.html", context={"request" : request, 
+                                                                                   "user" : current_user})
 
 @task_router.get("/task/{task_id}")
 async def get_task(task_id : int, current_user = Depends(get_current_user)):
