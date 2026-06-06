@@ -16,7 +16,7 @@ family=Inter:wght@400;500;600;700&display=swap"
   <body>
     <div class="toast-container" id="toast-container"></div>
 
-    <div class="modal-overlay hidden" id="task-modal">
+    <div class="modal-overlay" id="task-modal">
       <div class="modal">
         <div class="modal-header">
           <h2>Новая задача</h2>
@@ -89,7 +89,57 @@ family=Inter:wght@400;500;600;700&display=swap"
           </div>
         </header>
         <div class="primary-btn-container">
-          <button class="primary-btn">+ Добавить задачу</button>
+
+          <button class="primary-btn">
+            + Добавить задачу
+          </button>
+          <div class="filter-wrapper">
+
+            <button class="filter-btn" id="filter-btn">
+              Фильтры ▾
+            </button>
+
+            <div class="filter-dropdown hidden" id="filter-dropdown">
+
+              <div class="filter-group">
+                <label>Приоритет</label>
+                <select id="filter-priority">
+                  <option value="">Все</option>
+                  <option value="p0">0</option>
+                  <option value="p1">1</option>
+                  <option value="p2">2</option>
+                  <option value="p3">3</option>
+                  <option value="p4">4</option>
+                  <option value="p5">5</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label>Дата</label>
+                <select id="filter-date">
+                  <option value="">Все</option>
+                  <option value="today">Сегодня</option>
+                  <option value="tomorrow">Завтра</option>
+                  <option value="overdue">Просрочено</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label>Статус</label>
+                <select id="filter-status">
+                  <option value="">Все</option>
+                  <option value="active">Активные</option>
+                  <option value="done">Выполнено</option>
+                </select>
+              </div>
+
+              <button id="apply-filters" class="apply-btn">
+                Применить
+              </button>
+
+            </div>
+          </div>
+
         </div>
 
         <section class="task-list"></section>
