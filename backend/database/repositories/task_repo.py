@@ -50,3 +50,17 @@ class TaskRepository():
             stmt = select(Tasks).where(Tasks.user_id == user_id, Tasks.date.between(start,end))
             res = await session.execute(stmt)
             return res.scalars().all()
+        
+    async def get_future(self, user_id: int):
+        async with async_session() as session:
+
+            today = datetime.today().date()
+            start = datetime.combine(today, time.max)
+
+            stmt = select(Tasks).where(
+                Tasks.user_id == user_id,
+                Tasks.date > start
+            )
+
+            res = await session.execute(stmt)
+            return res.scalars().all()
