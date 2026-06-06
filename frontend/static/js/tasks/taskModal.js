@@ -30,4 +30,11 @@ export function initTaskModal() {
       modal.classList.remove("show");
     }
   });
+
+   document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("show")) {
+      modal.classList.remove("show");
+    }
+  });
+
 }
