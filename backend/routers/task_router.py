@@ -30,6 +30,23 @@ async def get_tasks_today(current_user = Depends(get_current_user)):
         "priority" : task.priority
     } for task in tasks]
 
+@task_router.get("/future")
+async def get_future_task_page(request : Request, current_user = Depends(get_current_user)):
+    return templates.TemplateResponse(request=request, name="/tasks/future.html", context={"request" : request, 
+                                                                               "user" : current_user})
+
+@task_router.get("/tasks/future")
+async def get_tasks_future(current_user = Depends(get_current_user)):
+    repo = TaskRepository()
+    tasks = await repo.get_future(user_id=current_user.id)
+    
+    return [{
+        "id" : task.id,
+        "title" : task.title,
+        "description" : task.description,
+        "priority" : task.priority
+    } for task in tasks]
+
 @task_router.get("/task/{task_id}")
 async def get_task(task_id : int, current_user = Depends(get_current_user)):
     repo = TaskRepository()
