@@ -230,13 +230,18 @@ body {
   color: #6b7280;
 }
 
-.primary-btn-container{
+.primary-btn-container {
+  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 15px;
 }
 
 .primary-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   border: none;
   background: #111827;
   color: white;
@@ -251,6 +256,65 @@ body {
 
 .primary-btn:hover{
   background-color: #1f2937;
+}
+
+.filter-wrapper {
+  position: absolute;
+  right: 0;
+}
+
+.filter-btn {
+  background: #111827;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background: white;
+  width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 12px;
+  z-index: 100;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.filter-group label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.filter-group select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.apply-btn {
+  width: 100%;
+  padding: 10px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 .task-input-card {

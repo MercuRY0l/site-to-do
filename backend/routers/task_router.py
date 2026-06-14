@@ -1,6 +1,6 @@
 
 
-from fastapi import APIRouter, HTTPException, Response, Depends, Request
+from fastapi import APIRouter, HTTPException, Response, Depends, Request, Query
 from fastapi.templating import Jinja2Templates
 
 from ..database.repositories.task_repo import TaskRepository
@@ -8,6 +8,8 @@ from ..database.repositories.task_repo import TaskRepository
 from ..pydantic_models.task_pydantic import TaskCreate,TaskUpdate
 
 from .deps import get_current_user
+
+from datetime import timedelta,datetime
 
 task_router = APIRouter()
 
@@ -95,3 +97,56 @@ async def edit_task(task_id : int, task : TaskUpdate,current_user = Depends(get_
     await repo.update(id=task_id, **task.model_dump(exclude_unset=True))
 
 
+@task_router.get("/tasks/filter")
+async def get_filtered_tasks(priority: str | None = Query(None),
+    status: str | None = Query(None),
+    date_filter: str | None = Query(None),
+    current_user = Depends(get_current_user)):
+
+    repo = TaskRepository()
+
+    tasks = await repo.get_all(user_id=current_user.id)
+
+    now = datetime.now()
+
+    if priority:
+        tasks = [task for task in tasks if task.priority == priority]
+
+    if status:
+        if status == "active":
+            tasks = [task for task in tasks if not task.completed]
+        elif status == "done":
+            tasks = [task for task in tasks if task.completed]
+
+    if date_filter:
+        today = now.date()
+
+        if date_filter == "today":
+            tasks = [
+                task for task in tasks
+                if task.date and task.date.date() == today
+            ]
+
+        elif date_filter == "tomorrow":
+            tomorrow = today + timedelta(days=1)
+
+            tasks = [
+                task for task in tasks
+                if task.date and task.date.date() == tomorrow
+            ]
+
+        elif date_filter == "overdue":
+            tasks = [
+                task for task in tasks
+                if task.date and task.date < now
+            ]
+
+    return [
+        {
+            "id": task.id,
+            "title": task.title,
+            "description": task.description,
+            "priority": task.priority
+        }
+        for task in tasks
+    ]
