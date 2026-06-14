@@ -5,6 +5,7 @@ import {initAddNewTask} from "../tasks/addNewTask.js"
 import { loadTasks } from "../tasks/loadTasks.js"
 import { initDeleteTask } from "./deleteTask.js"; 
 import { initEditTask } from "./editTask.js";
+import { initFilters } from "../filter/initFilters.js";
 
 export async function initTaskPage(){
     await loadProfile();
@@ -13,4 +14,5 @@ export async function initTaskPage(){
     await loadTasks();
     initDeleteTask();
     initEditTask();
+    initFilters();
 }
