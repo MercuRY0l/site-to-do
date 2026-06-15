@@ -72,6 +72,18 @@ export async function loadCompletedTasks() {
             list.appendChild(card);
         });
 
+        if (data){
+            const container = document.createElement("div");
+
+            container.classList.add("history-title-container");
+
+            container.innerHTML = `
+                <p>Это все. Истории для отчета больше нет.</p>
+            `;
+
+            list.appendChild(container);
+        }
+
     } catch (error) {
         console.error(error);
         showToast("error", "Ошибка загрузки отчёта");
