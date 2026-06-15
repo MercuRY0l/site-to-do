@@ -64,3 +64,11 @@ class TaskRepository():
 
             res = await session.execute(stmt)
             return res.scalars().all()
+        
+        
+    async def get_completed(self, user_id : int):
+        async with async_session() as session:
+            
+            stmt = select(Tasks).where(Tasks.is_completed == True, Tasks.user_id == user_id)
+            res = await session.execute(stmt)
+            return res.scalars().all()
