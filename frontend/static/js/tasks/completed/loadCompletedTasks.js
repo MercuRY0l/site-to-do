@@ -36,13 +36,27 @@ export async function loadCompletedTasks() {
             return;
         }
 
+        
+
         data.forEach(task => {
             const card = document.createElement("div");
+
+            const completedDate = new Date(task.completed_date);
+
+            const formattedDate = completedDate.toLocaleString("ru-RU", {
+                day: "numeric",
+                month: "short",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
 
             card.classList.add("task-card");
 
             card.innerHTML = `
                 <div class="task-info">
+                    <p class="completed-date">
+                        Выполнено: ${formattedDate}
+                    </p>
                     <h3>${task.title}</h3>
                     <p>${task.description}</p>
                 </div>
