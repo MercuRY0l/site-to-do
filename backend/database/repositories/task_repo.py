@@ -16,7 +16,7 @@ class TaskRepository():
     
     async def delete(self, id : int):
         async with async_session() as session:
-            stmt = delete(Tasks).where(Tasks.id == id)
+            stmt = sql_update(Tasks).where(Tasks.id == id).values(is_completed = True, completed_date = datetime.now())
             res = await session.execute(stmt)
             await session.commit()
             return res.rowcount
