@@ -13,6 +13,7 @@ from backend.routers.login_router import login_router
 from backend.routers.logout_router import logout_router
 from backend.routers.refresh_token_router import refresh_token_router 
 from backend.routers.task_router import task_router  
+from backend.routers.reports_router import reports_router
 
 from backend.database.connect import init_models
 
@@ -32,6 +33,7 @@ app.include_router(reg_router)
 app.include_router(refresh_token_router)
 app.include_router(logout_router)
 app.include_router(task_router)
+app.include_router(reports_router)
 
 
 app.add_middleware(
