@@ -197,6 +197,42 @@ body {
     max-width: 300px;
 }
 
+.history-title-container {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 32px;
+    margin-bottom: 24px;
+}
+
+.history-title-container p {
+    color: #9ca3af;
+    font-size: 14px;
+    font-weight: 500;
+
+    position: relative;
+}
+
+.history-title-container p::before,
+.history-title-container p::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+
+    width: 60px;
+    height: 1px;
+
+    background: #e5e7eb;
+}
+
+.history-title-container p::before {
+    right: calc(100% + 12px);
+}
+
+.history-title-container p::after {
+    left: calc(100% + 12px);
+}
+
 
 @media (max-width: 900px) {
   .sidebar {
