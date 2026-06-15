@@ -30,13 +30,15 @@ class TaskRepository():
     
     async def get_by_id(self, id : int) -> Tasks:
         async with async_session() as session:    
-            stmt = select(Tasks).where(Tasks.id == id)
+            stmt = select(Tasks).where(Tasks.id == id, 
+                                       Tasks.is_completed == False)
             res = await session.execute(stmt)
             return res.scalar_one_or_none()
     
     async def get_all(self, user_id : int) -> Tasks:
         async with async_session() as session:
-            stmt = select(Tasks).where(Tasks.user_id == user_id)
+            stmt = select(Tasks).where(Tasks.user_id == user_id, 
+                                       Tasks.is_completed == False)
             res = await session.execute(stmt)
             return res.scalars().all()
     
@@ -47,7 +49,9 @@ class TaskRepository():
             start = datetime.combine(today, time.min)
             end = datetime.combine(today, time.max)
             
-            stmt = select(Tasks).where(Tasks.user_id == user_id, Tasks.date.between(start,end))
+            stmt = select(Tasks).where(Tasks.user_id == user_id, 
+                                       Tasks.date.between(start,end), 
+                                       Tasks.is_completed == False)
             res = await session.execute(stmt)
             return res.scalars().all()
         
@@ -59,7 +63,8 @@ class TaskRepository():
 
             stmt = select(Tasks).where(
                 Tasks.user_id == user_id,
-                Tasks.date > start
+                Tasks.date > start, 
+                Tasks.is_completed == False
             )
 
             res = await session.execute(stmt)
@@ -69,6 +74,8 @@ class TaskRepository():
     async def get_completed(self, user_id : int):
         async with async_session() as session:
             
-            stmt = select(Tasks).where(Tasks.is_completed == True, Tasks.user_id == user_id)
+            stmt = select(Tasks).where(Tasks.is_completed == True, 
+                                       Tasks.user_id == user_id, 
+                                       )
             res = await session.execute(stmt)
             return res.scalars().all()
