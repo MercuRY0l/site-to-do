@@ -69,12 +69,19 @@ family=Inter:wght@400;500;600;700&display=swap"
       <aside class="sidebar">
         <div>
           <div class="logo">TaskFlow</div>
+
+          <div class="sidebar-actions">
+            <button class="primary-btn">+ Добавить задачу</button>
+          </div>
+
           <nav class="menu">
             <a href="/">Входящие</a>
             <a href="/today">Сегодня</a>
             <a href="/future">Предстоящие</a>
             <a href="/reports">Отчет</a>
           </nav>
+
+          
         </div>
         <div class="profile-card">
           <div class="avatar">
@@ -82,6 +89,7 @@ family=Inter:wght@400;500;600;700&display=swap"
           </div>
         </div>
       </aside>
+
       <main class="main-content">
         <header class="topbar">
           <div>
@@ -89,12 +97,9 @@ family=Inter:wght@400;500;600;700&display=swap"
             <p>Фокус на том, что важно сегодня</p>
           </div>
         </header>
-        <div class="primary-btn-container">
 
-          <button class="primary-btn">
-            + Добавить задачу
-          </button>
-          <div class="filter-wrapper">
+
+        <div class="filter-wrapper">
 
             <button class="filter-btn" id="filter-btn">
               Фильтры ▾
@@ -130,8 +135,7 @@ family=Inter:wght@400;500;600;700&display=swap"
 
             </div>
           </div>
-
-        </div>
+        
 
         <section class="task-list"></section>
       </main>

@@ -167,6 +167,49 @@ body {
   font-weight: 700;
   margin-bottom: 48px;
 }
+
+.sidebar-actions {
+    margin-bottom: 16px;
+}
+
+.primary-btn {
+    font-size: 14px;
+
+    display: block;
+    width: 100%;
+
+    padding: 12px 16px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+
+    color: #374151;
+
+    font-weight: 600;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-btn:hover {
+    background: #111827;
+    color: #fff;
+    border-color: #111827;
+
+    transform: translateY(-1px);
+}
+
+.primary-btn:active {
+    transform: translateY(0px);
+}
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -230,28 +273,7 @@ body {
   color: #6b7280;
 }
 
-.primary-btn-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.primary-btn {
-  border: none;
-  background: #111827;
-  color: white;
-  padding: 14px 22px;
-  border-radius: 14px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-
-  transition: background-color 0.25s ease;
-}
-
-.primary-btn:hover{
-  background-color: #1f2937;
-}
 
 .task-input-card {
   background: white;
