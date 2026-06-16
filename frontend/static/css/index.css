@@ -273,6 +273,15 @@ body {
     transform: translateY(0px);
 }
 
+.filter-container {
+  opacity: 1;
+}
+
+.filter-container.hidden{
+  display: none;
+}
+
+
 .filter-wrapper {
   position: relative;
 
@@ -284,25 +293,70 @@ body {
 }
 
 .filter-btn {
-  background: #111827;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border: 1px solid #e5e7eb;
+
+  background: #f9fafb;
+  color: #374151;
+
+  border-radius: 12px;
+
+  padding: 10px 16px;
+
+  font-size: 13px;
+  font-weight: 600;
+
   cursor: pointer;
-  font-weight: 500;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  
 }
 
+.filter-btn:hover{
+  background-color: rgba(229, 231, 235, 0.9);
+}
+
+.filter-btn:active {
+  transform: translateY(0);
+}
 .filter-dropdown {
   position: absolute;
-  top: 45px;
+  top: 52px;
   right: 0;
+
+  width: 240px;
+
   background: white;
-  width: 220px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  padding: 12px;
+  border-radius: 14px;
+
+  padding: 14px;
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+
   z-index: 100;
+
+  opacity: 1;
+  transform: translateY(0) scale(1);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.filter-dropdown.hidden {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.97);
+
+  pointer-events: none;
 }
 
 .filter-group {
@@ -318,23 +372,58 @@ body {
 }
 
 .filter-group select {
-  padding: 8px;
-  border-radius: 8px;
+  padding: 10px 12px;
+
   border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+.filter-group select:focus {
+  outline: none;
+
+  border-color: #3b82f6;
+
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
 .apply-btn {
   width: 100%;
-  padding: 10px;
+
+  padding: 10px 14px;
+
   background: #3b82f6;
   color: white;
+
   border: none;
   border-radius: 10px;
+
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.hidden {
-  display: none;
+.apply-btn:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+.apply-btn:active {
+  transform: translateY(0);
+}
+
+.filter-dropdown.closed {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.97);
+  pointer-events: none;
 }
 
 .task-input-card {
@@ -454,6 +543,16 @@ body {
 
     min-height: 400px;
     width: 100%;
+
+    transform: translateY(15px);
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+}
+
+.empty-state.show{
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .empty-state-content {
@@ -491,6 +590,8 @@ body {
     line-height: 1.6;
     max-width: 300px;
 }
+
+
 
 
 @media (max-width: 900px) {
