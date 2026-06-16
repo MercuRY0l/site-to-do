@@ -97,45 +97,45 @@ family=Inter:wght@400;500;600;700&display=swap"
             <p>Фокус на том, что важно сегодня</p>
           </div>
         </header>
-
-
-        <div class="filter-wrapper">
-
+        
+        <div class="filter-container hidden">
+          <div class="filter-wrapper">
             <button class="filter-btn" id="filter-btn">
-              Фильтры ▾
+                Фильтры ▾
             </button>
 
             <div class="filter-dropdown hidden" id="filter-dropdown">
 
-              <div class="filter-group">
+            <div class="filter-group">
                 <label>Приоритет</label>
                 <select id="filter-priority">
-                  <option value="">Все</option>
-                  <option value="p0">0</option>
-                  <option value="p1">1</option>
-                  <option value="p2">2</option>
-                  <option value="p3">3</option>
-                  <option value="p4">4</option>
-                  <option value="p5">5</option>
+                <option value="">Все</option>
+                <option value="p0">0</option>
+                <option value="p1">1</option>
+                <option value="p2">2</option>
+                <option value="p3">3</option>
+                <option value="p4">4</option>
+                <option value="p5">5</option>
                 </select>
-              </div>
+            </div>
 
-              <div class="filter-group">
+            <div class="filter-group">
                 <label>Дата</label>
                 <select id="filter-date">
-                  <option value="">Все</option>
-                  <option value="today">Сегодня</option>
-                  <option value="tomorrow">Завтра</option>
+                <option value="">Все</option>
+                <option value="today">Сегодня</option>
+                <option value="tomorrow">Завтра</option>
                 </select>
-              </div>
-              
-              <button id="apply-filters" class="apply-btn">
+            </div>
+            
+            <button id="apply-filters" class="apply-btn">
                 Применить
-              </button>
+            </button>
 
             </div>
+
           </div>
-        
+        </div>
 
         <section class="task-list"></section>
       </main>
