@@ -1,6 +1,7 @@
 import { API_URL } from "../modules/config.js";
 import { apiFetch } from "../auth/apiFetch.js";
 import { showToast } from "../modules/showToast.js";
+import { loadTasks} from "../tasks/loadTasks.js"
 
 export function initDeleteTask() {
 
@@ -45,6 +46,8 @@ export function initDeleteTask() {
             setTimeout(() => {
                 card.remove();
             }, 350);
+
+            await loadTasks();
 
         } catch (error) {
 
