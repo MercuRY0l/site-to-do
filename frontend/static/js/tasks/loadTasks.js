@@ -4,6 +4,7 @@ import { showToast } from "../modules/showToast.js";
 
 export async function loadTasks() {
     const list = document.querySelector(".task-list");
+    const filter_container = document.querySelector(".filter-container")
 
     if (!list) return;
 
@@ -22,6 +23,8 @@ export async function loadTasks() {
         }
 
         if (!data.length) {
+            filter_container.classList.add("hidden")
+            
             list.innerHTML = `
                 <div class="empty-state">
                 <div class="empty-state-content">
@@ -35,6 +38,13 @@ export async function loadTasks() {
                 </div>
             </div>
             `;
+
+            const empty_state = document.querySelector(".empty-state")
+
+            requestAnimationFrame(()=>{
+                empty_state.classList.add("show")
+            })
+
             return;
         }
 
@@ -70,6 +80,10 @@ export async function loadTasks() {
 
             list.appendChild(card);
         });
+
+
+        filter_container.classList.remove("hidden")
+        
 
     } catch (error) {
         console.error(error);
