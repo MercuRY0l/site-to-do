@@ -168,11 +168,16 @@ body {
   margin-bottom: 48px;
 }
 
+
 .sidebar-actions {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 16px;
+    gap: 16px;
 }
 
-.primary-btn {
+
+.primary-btn, .search-btn {
     font-size: 14px;
 
     display: block;
@@ -198,7 +203,7 @@ body {
     overflow: hidden;
 }
 
-.primary-btn:hover {
+.primary-btn:hover, .search-btn:hover {
     background: #111827;
     color: #fff;
     border-color: #111827;
@@ -206,7 +211,7 @@ body {
     transform: translateY(-1px);
 }
 
-.primary-btn:active {
+.primary-btn:active, .search-btn:active {
     transform: translateY(0px);
 }
 
