@@ -37,17 +37,14 @@ export function initModals() {
     });
 
 }
-export function openModal(id) {
 
+export function closeAllModals() {
     document
-        .getElementById(id)
-        ?.classList.add("show");
-
+        .querySelectorAll(".modal-overlay.show")
+        .forEach(modal => modal.classList.remove("show"));
 }
-export function closeModal(id) {
 
-    document
-        .getElementById(id)
-        ?.classList.remove("show");
-
+export function openModal(id) {
+    closeAllModals();
+    document.getElementById(id)?.classList.add("show");
 }
