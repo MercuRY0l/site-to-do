@@ -16,10 +16,79 @@ family=Inter:wght@400;500;600;700&display=swap"
   <body>
     <div class="toast-container" id="toast-container"></div>
 
+    <div class="modal-overlay" id="task-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2>Новая задача</h2>
+          <button class="modal-close" id="close-modal">&times;</button>
+        </div>
+
+        <form id="task-form">
+          <div class="form-group">
+            <label>Название</label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Введите название задачи"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Описание</label>
+            <textarea
+              name="description"
+              placeholder="Введите описание"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Дата</label>
+            <input type="datetime-local" name="date" required />
+          </div>
+
+          <div class="form-group">
+            <label>Приоритет</label>
+            <select name="priority">
+              <option value="p0">0 — Нет приоритета</option>
+              <option value="p1">1 — Очень низкий</option>
+              <option value="p2">2 — Низкий</option>
+              <option value="p3">3 — Средний</option>
+              <option value="p4">4 — Высокий</option>
+              <option value="p5">5 — Критический</option>
+            </select>
+          </div>
+
+          <button type="submit" class="save-task-btn">Создать задачу</button>
+        </form>
+      </div>
+    </div>
+
     <div class="app-layout">
       <aside class="sidebar">
         <div>
           <div class="logo">TaskFlow</div>
+
+          <div class="sidebar-actions">
+            <button class="search-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+
+            <span>Поиск</span>
+            </button>
+            <button class="primary-btn">+ Добавить задачу</button>
+          </div>
+
           <nav class="menu">
             <a href="/">Входящие</a>
             <a href="/today">Сегодня</a>
@@ -40,8 +109,46 @@ family=Inter:wght@400;500;600;700&display=swap"
           </div>
         </header>
 
-        <section class="completed-task-list"></section>
+        <!-- <div class="filter-wrapper">
 
+                <button class="filter-btn" id="filter-btn">
+                  Фильтры ▾
+                </button>
+
+                <div class="filter-dropdown hidden" id="filter-dropdown">
+
+                  <div class="filter-group">
+                    <label>Приоритет</label>
+                    <select id="filter-priority">
+                      <option value="">Все</option>
+                      <option value="p0">0</option>
+                      <option value="p1">1</option>
+                      <option value="p2">2</option>
+                      <option value="p3">3</option>
+                      <option value="p4">4</option>
+                      <option value="p5">5</option>
+                    </select>
+                  </div>
+
+                  <div class="filter-group">
+                    <label>Дата</label>
+                    <select id="filter-date">
+                      <option value="">Все</option>
+                      <option value="today">Сегодня</option>
+                      <option value="tomorrow">Завтра</option>
+                    </select>
+                  </div>
+                  
+                  <button id="apply-filters" class="apply-btn">
+                    Применить
+                  </button>
+
+                </div>
+              </div>
+
+            </div> -->
+
+        <section class="completed-task-list"></section>
       </main>
     </div>
 

@@ -79,3 +79,10 @@ class TaskRepository():
                                        )
             res = await session.execute(stmt)
             return res.scalars().all()
+        
+    async def get_search_tasks(self, q : str):
+        async with async_session() as session:
+            stmt = select(Tasks).where(Tasks.title.ilike(f"%{q}%"), Tasks.is_completed == False).limit(10)
+            res = await session.execute(stmt)
+            return res.scalars().all()
+            

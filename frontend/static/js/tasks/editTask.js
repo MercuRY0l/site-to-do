@@ -1,6 +1,7 @@
 import { API_URL } from "../modules/config.js";
 import { apiFetch } from "../auth/apiFetch.js";
 import { showToast } from "../modules/showToast.js";
+import { openModal } from "../modules/modals.js"
 
 export function initEditTask() {
 
@@ -47,11 +48,9 @@ export function initEditTask() {
 }
 
 function fillEditForm(task) {
-
-    const modal = document.getElementById("task-modal");
     const form = document.getElementById("task-form");
 
-    modal.classList.add("show");
+    openModal("task-modal")
 
     form.dataset.mode = "edit";
     form.dataset.taskId = task.id;

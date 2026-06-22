@@ -1,40 +1,24 @@
+import { openModal } from "../modules/modals.js";
+
 export function initTaskModal() {
-  const modal = document.getElementById("task-modal");
-  const openBtn = document.querySelector(".primary-btn");
-  const closeBtn = document.getElementById("close-modal");
-  const form = document.getElementById("task-form")
 
-  if (!modal) return;
-  if (!openBtn) return;
-  if (!closeBtn) return;
+    const openBtn = document.querySelector(".primary-btn");
+    const form = document.getElementById("task-form");
 
-  openBtn.addEventListener("click", () => {
+    if (!openBtn || !form) return;
 
-    form.reset();
+    openBtn.addEventListener("click", () => {
 
-    delete form.dataset.mode;
-    delete form.dataset.taskId;
+        form.reset();
 
-    form.querySelector(".save-task-btn").textContent =
-        "Создать задачу";
+        delete form.dataset.mode;
+        delete form.dataset.taskId;
 
-    modal.classList.add("show");
-  });
+        form.querySelector(".save-task-btn").textContent =
+            "Создать задачу";
 
-  closeBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
+        openModal("task-modal");
 
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.remove("show");
-    }
-  });
-
-   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("show")) {
-      modal.classList.remove("show");
-    }
-  });
+    });
 
 }

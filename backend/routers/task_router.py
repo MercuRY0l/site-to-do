@@ -150,3 +150,21 @@ async def get_filtered_tasks(priority: str | None = Query(None),
         }
         for task in tasks
     ]
+
+
+@task_router.get("/tasks/search/{q}")
+async def get_search(q : str, current_user = Depends(get_current_user)):
+    repo = TaskRepository()
+    
+    tasks = await repo.get_search_tasks(q=q)
+    
+    if not tasks:
+        raise HTTPException(status_code=404, detail="Searched tasks not found")
+    
+    return [{
+        "id" : t.id,
+        "title" : t.title,
+        "description" : t.description,
+        "priority" : t.priority,
+        "date" : t.date
+    } for t in tasks]
