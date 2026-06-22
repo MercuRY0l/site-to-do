@@ -63,6 +63,17 @@ body {
   opacity: 1;
 }
 
+.modal-search.show{
+  opacity: 1;
+  visibility: visible;
+  backdrop-filter: blur(6px);
+}
+
+.modal-search.show .modal{
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -123,6 +134,17 @@ body {
 .form-group textarea:focus,
 .form-group select:focus {
   border-color: #111827;
+}
+
+.search-task-list {
+    max-height: 300px;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    margin-top: 16px;
 }
 
 .save-task-btn {
