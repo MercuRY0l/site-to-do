@@ -162,6 +162,7 @@ async def get_search(q : str, current_user = Depends(get_current_user)):
         raise HTTPException(status_code=404, detail="Searched tasks not found")
     
     return [{
+        "id" : t.id,
         "title" : t.title,
         "description" : t.description,
         "priority" : t.priority,
