@@ -65,6 +65,25 @@ family=Inter:wght@400;500;600;700&display=swap"
       </div>
     </div>
 
+    <div class="modal-overlay" id="search-modal">
+        <div class="modal">
+          <div class="modal-header">
+            <h2>Поиск задачи</h2>
+            <button class="modal-close">&times;</button>
+          </div>
+          <div class="form-group">
+             
+              <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Введите название задачи"
+              >
+          </div>
+
+          <div class="search-task-list"></div>
+        </div>
+    </div>
+
     <div class="app-layout">
       <aside class="sidebar">
         <div>
@@ -108,6 +127,8 @@ family=Inter:wght@400;500;600;700&display=swap"
             <h1>Отчеты</h1>
           </div>
         </header>
+
+        
 
         <div class="filter-wrapper">
 
@@ -171,10 +192,11 @@ family=Inter:wght@400;500;600;700&display=swap"
                 </div>
               </div>
 
-            </div>
+              <section class="completed-task-list"></section>
 
-        <section class="completed-task-list"></section>
-      </main>
+            </div>
+            
+        </main>
     </div>
 
     <script src="../static/js/main.js" defer type="module"></script>
