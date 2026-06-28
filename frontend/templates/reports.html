@@ -109,13 +109,38 @@ family=Inter:wght@400;500;600;700&display=swap"
           </div>
         </header>
 
-        <!-- <div class="filter-wrapper">
+        <div class="filter-wrapper">
 
                 <button class="filter-btn" id="filter-btn">
                   Фильтры ▾
                 </button>
 
                 <div class="filter-dropdown hidden" id="filter-dropdown">
+                  
+
+                  <div class="filter-group">
+                    <label>Сортировка</label>
+
+                    <select id="filter-sort">
+                        <option value="">Без сортировки</option>
+
+                        <option value="priority_desc">
+                            Приоритет: высокий → низкий
+                        </option>
+
+                        <option value="priority_asc">
+                            Приоритет: низкий → высокий
+                        </option>
+
+                        <option value="date_asc">
+                            Дата: сначала ближайшие
+                        </option>
+
+                        <option value="date_desc">
+                            Дата: сначала поздние
+                        </option>
+                    </select>
+                  </div>
 
                   <div class="filter-group">
                     <label>Приоритет</label>
@@ -146,7 +171,7 @@ family=Inter:wght@400;500;600;700&display=swap"
                 </div>
               </div>
 
-            </div> -->
+            </div>
 
         <section class="completed-task-list"></section>
       </main>
