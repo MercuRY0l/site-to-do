@@ -67,6 +67,25 @@ family=Inter:wght@400;500;600;700&display=swap"
       </div>
     </div>
 
+    <div class="modal-overlay" id="search-modal">
+        <div class="modal">
+          <div class="modal-header">
+            <h2>Поиск задачи</h2>
+            <button class="modal-close">&times;</button>
+          </div>
+          <div class="form-group">
+             
+              <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Введите название задачи"
+              >
+          </div>
+
+          <div class="search-task-list"></div>
+        </div>
+    </div>
+
     <div class="app-layout">
       <aside class="sidebar">
         <div>
@@ -111,13 +130,37 @@ family=Inter:wght@400;500;600;700&display=swap"
           </div>
         </header>
 
-        <!-- <div class="filter-wrapper">
+        <div class="filter-wrapper">
 
           <button class="filter-btn" id="filter-btn">
             Фильтры ▾
           </button>
 
           <div class="filter-dropdown hidden" id="filter-dropdown">
+
+            <div class="filter-group">
+                <label>Сортировка</label>
+
+                <select id="filter-sort">
+                    <option value="">Без сортировки</option>
+
+                    <option value="priority_desc">
+                        Приоритет: высокий → низкий
+                    </option>
+
+                    <option value="priority_asc">
+                        Приоритет: низкий → высокий
+                    </option>
+
+                    <option value="date_asc">
+                        Дата: сначала ближайшие
+                    </option>
+
+                    <option value="date_desc">
+                        Дата: сначала поздние
+                    </option>
+                </select>
+            </div>
 
             <div class="filter-group">
               <label>Приоритет</label>
@@ -146,11 +189,14 @@ family=Inter:wght@400;500;600;700&display=swap"
             </button>
 
           </div>
+
+          
+        </div>
+        <section class="task-list-future"></section>
+
         </div>
 
-        </div> -->
-
-        <section class="task-list-future"></section>
+        
       </main>
     </div>
 

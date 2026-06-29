@@ -1,8 +1,9 @@
 import { API_URL } from "../modules/config.js";
 import { apiFetch } from "../auth/apiFetch.js";
 import { renderTasks } from "../modules/renderTasks.js";
+import { getSortedTasks } from "./getSortedTasks.js";
 
-export function initFilters() {
+export async function initFilters() {
 
     const filterBtn =
         document.getElementById("filter-btn");
@@ -20,6 +21,23 @@ export function initFilters() {
     });
 
     applyBtn.addEventListener("click", async () => {
+
+
+        const sort =
+        document.getElementById("filter-sort").value;
+
+        if (sort) {
+
+            const tasks = await getSortedTasks(sort);
+
+            renderTasks(tasks);
+
+            dropdown.classList.add("hidden");
+
+            return;
+        }
+
+
 
         const priority =
             document.getElementById("filter-priority").value;

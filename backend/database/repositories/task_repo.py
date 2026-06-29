@@ -1,7 +1,7 @@
 from datetime import datetime,time
 from ..connect import async_session
 from ..models.task import Tasks
-from sqlalchemy import select, delete, update as sql_update
+from sqlalchemy import select, delete, update as sql_update, desc , asc
 
 
 class TaskRepository():
@@ -86,3 +86,23 @@ class TaskRepository():
             res = await session.execute(stmt)
             return res.scalars().all()
             
+    async def get_sorted_tasks(self, user_id : int, sort : str):
+        async with async_session() as session:
+            
+            stmt = select(Tasks).where(Tasks.user_id == user_id, Tasks.is_completed == False)
+            
+            if sort == "priority_desc":
+                stmt = stmt.order_by(desc(Tasks.priority))
+                
+            elif sort == "priority_asc":
+                stmt = stmt.order_by(asc(Tasks.priority))
+                
+            elif sort == "date_desc":
+                stmt = stmt.order_by(desc(Tasks.date))
+            
+            elif sort == "date_asc":
+                stmt = stmt.order_by(asc(Tasks.date))
+                
+                
+            res = await session.execute(stmt)
+            return res.scalars().all()

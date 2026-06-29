@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TaskFlow</title>
     <link rel="stylesheet" href="../../static/css/today.css" />
+    <link rel="stylesheet" href="https://cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,6 +16,7 @@ family=Inter:wght@400;500;600;700&display=swap"
   </head>
   <body>
     <div class="toast-container" id="toast-container"></div>
+
 
     <div class="modal-overlay" id="task-modal">
       <div class="modal">
@@ -65,6 +67,25 @@ family=Inter:wght@400;500;600;700&display=swap"
       </div>
     </div>
 
+    <div class="modal-overlay" id="search-modal">
+        <div class="modal">
+          <div class="modal-header">
+            <h2>Поиск задачи</h2>
+            <button class="modal-close">&times;</button>
+          </div>
+          <div class="form-group">
+             
+              <input
+                  type="text"
+                  id="search-input"
+                  placeholder="Введите название задачи"
+              >
+          </div>
+
+          <div class="search-task-list"></div>
+        </div>
+    </div>
+
     <div class="app-layout">
       <aside class="sidebar">
         <div>
@@ -88,7 +109,7 @@ family=Inter:wght@400;500;600;700&display=swap"
             </button>
             <button class="primary-btn">+ Добавить задачу</button>
           </div>
-
+         
           <nav class="menu">
             <a href="/">Входящие</a>
             <a href="/today">Сегодня</a>
@@ -105,50 +126,77 @@ family=Inter:wght@400;500;600;700&display=swap"
       <main class="main-content">
         <header class="topbar">
           <div>
-            <h1>Сегодня</h1>
+            <h1>Предстоящие</h1>
           </div>
         </header>
 
-        <!-- <div class="filter-wrapper">
+        <div class="filter-wrapper">
 
-                <button class="filter-btn" id="filter-btn">
-                  Фильтры ▾
-                </button>
+          <button class="filter-btn" id="filter-btn">
+            Фильтры ▾
+          </button>
 
-                <div class="filter-dropdown hidden" id="filter-dropdown">
+          <div class="filter-dropdown hidden" id="filter-dropdown">
 
-                  <div class="filter-group">
-                    <label>Приоритет</label>
-                    <select id="filter-priority">
-                      <option value="">Все</option>
-                      <option value="p0">0</option>
-                      <option value="p1">1</option>
-                      <option value="p2">2</option>
-                      <option value="p3">3</option>
-                      <option value="p4">4</option>
-                      <option value="p5">5</option>
-                    </select>
-                  </div>
+            <div class="filter-group">
+                <label>Сортировка</label>
 
-                  <div class="filter-group">
-                    <label>Дата</label>
-                    <select id="filter-date">
-                      <option value="">Все</option>
-                      <option value="today">Сегодня</option>
-                      <option value="tomorrow">Завтра</option>
-                    </select>
-                  </div>
-                  
-                  <button id="apply-filters" class="apply-btn">
-                    Применить
-                  </button>
+                <select id="filter-sort">
+                    <option value="">Без сортировки</option>
 
-                </div>
-              </div>
+                    <option value="priority_desc">
+                        Приоритет: высокий → низкий
+                    </option>
 
-            </div> -->
+                    <option value="priority_asc">
+                        Приоритет: низкий → высокий
+                    </option>
 
+                    <option value="date_asc">
+                        Дата: сначала ближайшие
+                    </option>
+
+                    <option value="date_desc">
+                        Дата: сначала поздние
+                    </option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Приоритет</label>
+              <select id="filter-priority">
+                <option value="">Все</option>
+                <option value="p0">0</option>
+                <option value="p1">1</option>
+                <option value="p2">2</option>
+                <option value="p3">3</option>
+                <option value="p4">4</option>
+                <option value="p5">5</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>Дата</label>
+              <select id="filter-date">
+                <option value="">Все</option>
+                <option value="today">Сегодня</option>
+                <option value="tomorrow">Завтра</option>
+              </select>
+            </div>
+            
+            <button id="apply-filters" class="apply-btn">
+              Применить
+            </button>
+
+          </div>
+
+          
+        </div>
         <section class="task-list-today"></section>
+
+        </div>
+
+        
       </main>
     </div>
 
